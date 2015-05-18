@@ -10,9 +10,11 @@ var message = ['我要參加你的單身 pa ~', 'X~~你是我的最後一道防�
                 'PY 你綁定了！恭喜啦 XD', '蓋瑞用力！', '海鮮少一點！海鮮少一點！海鮮少一點！',
                 '我是__～如果還沒生 就會去歐～', 'felicidades!', '恭喜艾莉恩！！',
                 '讓小孩子們來澳洲玩，我們可以教他們喝酒。', '飛比結婚真是令人太高興了（轉圈）',
-                '新娘好美好美好美！', '飛比, 恭喜您找到了認真又有想法的大男孩~',
+                '新娘好美好美好美！', '飛比, 恭喜您找到了認真又有想法的大男孩~', '要幸福喔〜啾咪❤',
                 'PY, 恭喜您找到自然呆起來很漂亮的老婆~', '我想吃麥噹噹也可以嗎?',
-                '阿捏哈 say 呦 ~', '愛護地球少吃魚翅 QQ', '可以十道都是油飯嗎?',
+                '阿捏哈 say 呦 ~', '愛護地球少吃魚翅 QQ', '可以十道都是油飯嗎?', '不要把我的鍾寫錯喔',
+                '我要看PY喝醉~~~', '我想吃干貝....', '결혼을 축하합니다 !', '希望也能早日見到小小P喔!',
+                '恭喜~ 終於可以去基隆玩了，耶！', '我預產期在五月底，那時候應該無法出席了，恭喜你們啦啦啦',
                 '十道菜都想要是水煮湯圓！！！', '可以鬧洞房嗎？', 'If you build it he will come'];
 
 (function (win) {
@@ -41,20 +43,24 @@ var message = ['我要參加你的單身 pa ~', 'X~~你是我的最後一道防�
       container.classList.add('animated');
       container.classList.add(this.BASEATYPE);
       container.addEventListener('animationend', this);
+      container.addEventListener('webkitAnimationEnd', this);
     },
 
     stopAnimaion: function wa_stopAnimation (container) {
       container.classList.remove('animated');
       container.classList.remove(this.BASEATYPE);
       container.removeEventListener('animationend', this);
+      container.removeEventListener('webkitAnimationEnd', this);
     },
 
     handleEvent: function wa_handleEvent(evt) {
       switch (evt.type) {
+        case 'webkitAnimationEnd':
         case 'animationend':
+          var self = this;
           this.stopAnimaion(this.mainWord);
-          window.setTimeout(() => {
-            this.start();
+          window.setTimeout(function () {
+            self.start();
           }, 1000);
           break;
       }; 
